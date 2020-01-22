@@ -1,0 +1,22 @@
+{
+  "name": "wasp",
+  "version": "1.0.0",
+  "description": "Website Analysis & Scanning Program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jordan Gomes & Corey Feldman",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "colors": "^1.4.0",
+    "inquirer": "^7.0.3",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "node-virustotal": "^3.16.0",
+    "nslookup": "^1.1.1",
+    "request": "^2.88.0",
+    "whois": "^2.11.0"
+  }
+}
