@@ -1,13 +1,15 @@
 const whois = require("whois");
-const inquirer = require('inquirer');
+const inquirer = require('inquirer'); //
 const colors = require('colors');
 const request = require("request")
 const cheerio = require('cheerio')
 const nslookup = require('nslookup')
-
+const lolcatjs = require('lolcatjs');
+const geoip = require('geoip-lite');
 
 const VirusTotal = require("./modules/virusTotal.js")
 const Shodan = require("./modules/shodan.js")
+
 
 
 const config = require("./config.js")
@@ -15,17 +17,31 @@ const config = require("./config.js")
 let VirusTotalClient = new VirusTotal(config.VirusTotal.apiKey, config.VirusTotal.rescanParameters);
 let ShodanClient = new Shodan();
 
+
 function mainLoop(){
-    console.log(" _       _____   _____ ____ ");
-    console.log("| |     / /   | / ___// __ \\");
-    console.log("| | /| / / /| | \\__ \\/ /_/ /");
-    console.log("| |/ |/ / ___ |___/ / ____/ ");
-    console.log("|__/|__/_/  |_/____/_/      ");
-    inquirer.prompt([{
+
+
+    //ascii stuff vvvv
+    lolcatjs.options.seed = Math.round(Math.random() * 1000);
+    lolcatjs.options.colors = true;
+    lolcatjs.fromString("")
+    lolcatjs.fromString("██╗    ██╗ █████╗ ███████╗██████╗ ");
+    lolcatjs.fromString("██║    ██║██╔══██╗██╔════╝██╔══██╗");
+    lolcatjs.fromString("██║ █╗ ██║███████║███████╗██████╔╝");
+    lolcatjs.fromString("██║███╗██║██╔══██║╚════██║██╔═══╝ ");
+    lolcatjs.fromString("╚███╔███╔╝██║  ██║███████║██║     ");
+    lolcatjs.fromString(" ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝     ");
+   
+    
+    console.log("")
+    //ascii stuff ^^^^
+   
+   
+     inquirer.prompt([{
         type: 'list',
         name: 'action',
         message: 'What do you want to do?',
-        choices: ['Scan with Virus Total', 'Get Whois Info', 'nslookup', 'Shodan Ports And Services', 'Geolocation Via IP Address']
+        choices: ['Scan with Virus Total', 'Get Whois Info', 'nslookup', 'Shodan Ports And Services', 'Geolocation']
     }]).then(answers => {
         switch (answers.action) {
             case 'Scan with Virus Total':
@@ -52,19 +68,16 @@ function mainLoop(){
                         })
                     });
                     break;
-            case 'Geolocation Via IP Address':
+            case 'Geolocation':
                     inquirer.prompt({type: 'input',name: 'ip', message: 'What is the IP Address you need to check?'}).then(ipAddress => {
-                        request('https://www.liveipmap.com/?ip=' + ipAddress.ip, (error, response, html) => {
-                            if(!error && response.statusCode == 200) {
-                               const $ = cheerio.load(html)
-                                
-                               const table = $('.table')
-    
-                               const tableText = table.find('td')
-                               console.log(tableText.text()) 
-                            
-                            }
-                        })
+                        var geo = geoip.lookup(ipAddress.ip)
+                        //regex to simulate clear console
+                        process.stdout.write('\033c')
+                        console.log('')
+                        lolcatjs.fromString('GEOLOCATION INFORMATION')
+
+                        console.log(geo);
+                        mainLoop();
                     });
                     break;
             case 'nslookup':
