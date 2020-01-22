@@ -41,7 +41,7 @@ function mainLoop(){
         type: 'list',
         name: 'action',
         message: 'What do you want to do?',
-        choices: ['Scan with Virus Total', 'Get Whois Info', 'nslookup', 'Shodan Ports And Services', 'Geolocation']
+        choices: ['Scan with Virus Total', 'Get Whois Info', 'nslookup', 'Shodan Ports And Services', 'Geolocation', 'Hyperlink Extractor']
     }]).then(answers => {
         switch (answers.action) {
             case 'Scan with Virus Total':
@@ -94,7 +94,22 @@ function mainLoop(){
                         });
                     });
                 break;
-            default:
+                case 'Hyperlink Extractor':
+                    inquirer.prompt({type: 'input',name: 'url', message: 'What webpage are you trying to extract from? Please include http:// or https://\n'}).then(url => {
+                        request(url.url, function(err, resp, body){
+                          $ = cheerio.load(body);
+                          links = $('a'); //jquery get all hyperlinks
+                          $(links).each(function(i, link){
+                            console.log($(link).text() + ':\n  ' + $(link).attr('href'));
+
+                        });
+                        
+                    
+                    });
+                          
+                });
+                break;
+                default:
                 break;
         }
     });
