@@ -110,3 +110,6 @@ dist
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
+# Config File
+config.js
