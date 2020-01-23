@@ -1,6 +1,5 @@
 const whois = require("whois");
-const inquirer = require('inquirer'); //
-const colors = require('colors');
+const inquirer = require('inquirer');
 const request = require("request")
 const cheerio = require('cheerio')
 const nslookup = require('nslookup')
@@ -10,17 +9,14 @@ const VirusTotal = require("./modules/virusTotal.js")
 const Shodan = require("./modules/shodan.js")
 
 
-
 const config = require("./config.js")
+
 
 let VirusTotalClient = new VirusTotal(config.VirusTotal.apiKey, config.VirusTotal.rescanParameters);
 let ShodanClient = new Shodan();
 
 
 function mainLoop(){
-
-
-    
     console.log("")
     console.log("██╗    ██╗ █████╗ ███████╗██████╗ ");
     console.log("██║    ██║██╔══██╗██╔════╝██╔══██╗");
@@ -28,11 +24,8 @@ function mainLoop(){
     console.log("██║███╗██║██╔══██║╚════██║██╔═══╝ ");
     console.log("╚███╔███╔╝██║  ██║███████║██║     ");
     console.log(" ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝     ");
-   
-    
     console.log("")
     //ascii stuff ^^^^
-   
    
      inquirer.prompt([{
         type: 'list',
@@ -72,7 +65,6 @@ function mainLoop(){
                         process.stdout.write('\033c')
                         console.log('')
                         console.log('GEOLOCATION INFORMATION')
-
                         console.log(geo);
                         mainLoop();
                     });
@@ -94,17 +86,14 @@ function mainLoop(){
                 case 'Hyperlink Extractor':
                     inquirer.prompt({type: 'input',name: 'url', message: 'What webpage are you trying to extract from? Please include http:// or https://\n'}).then(url => {
                         request(url.url, function(err, resp, body){
-                          $ = cheerio.load(body);
-                          links = $('a'); //jquery get all hyperlinks
-                          $(links).each(function(i, link){
-                            console.log($(link).text() + ':\n  ' + $(link).attr('href'));
-
+                            $ = cheerio.load(body);
+                            links = $('a'); //jquery get all hyperlinks
+                            $(links).each(function(i, link){
+                                console.log($(link).text() + ':\n  ' + $(link).attr('href'));
+                            });
                         });
-                        
-                    
+                            
                     });
-                          
-                });
                 break;
                 default:
                 break;
