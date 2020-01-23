@@ -4,7 +4,6 @@ const colors = require('colors');
 const request = require("request")
 const cheerio = require('cheerio')
 const nslookup = require('nslookup')
-const lolcatjs = require('lolcatjs');
 const geoip = require('geoip-lite');
 
 const VirusTotal = require("./modules/virusTotal.js")
@@ -21,16 +20,14 @@ let ShodanClient = new Shodan();
 function mainLoop(){
 
 
-    //ascii stuff vvvv
-    lolcatjs.options.seed = Math.round(Math.random() * 1000);
-    lolcatjs.options.colors = true;
-    lolcatjs.fromString("")
-    lolcatjs.fromString("██╗    ██╗ █████╗ ███████╗██████╗ ");
-    lolcatjs.fromString("██║    ██║██╔══██╗██╔════╝██╔══██╗");
-    lolcatjs.fromString("██║ █╗ ██║███████║███████╗██████╔╝");
-    lolcatjs.fromString("██║███╗██║██╔══██║╚════██║██╔═══╝ ");
-    lolcatjs.fromString("╚███╔███╔╝██║  ██║███████║██║     ");
-    lolcatjs.fromString(" ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝     ");
+    
+    console.log("")
+    console.log("██╗    ██╗ █████╗ ███████╗██████╗ ");
+    console.log("██║    ██║██╔══██╗██╔════╝██╔══██╗");
+    console.log("██║ █╗ ██║███████║███████╗██████╔╝");
+    console.log("██║███╗██║██╔══██║╚════██║██╔═══╝ ");
+    console.log("╚███╔███╔╝██║  ██║███████║██║     ");
+    console.log(" ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝     ");
    
     
     console.log("")
@@ -74,7 +71,7 @@ function mainLoop(){
                         //regex to simulate clear console
                         process.stdout.write('\033c')
                         console.log('')
-                        lolcatjs.fromString('GEOLOCATION INFORMATION')
+                        console.log('GEOLOCATION INFORMATION')
 
                         console.log(geo);
                         mainLoop();
