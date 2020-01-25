@@ -2,9 +2,11 @@ const request = require("request")
 const cheerio = require('cheerio')
 
 class Shodan {
-    scanIP(url) {
+    scanIP(ipAddress) {
         return new Promise(function(resolve, reject) {
-            request('https://www.shodan.io/host/' + url, (error, response, html) => {
+            if(!ipAddress) 
+                reject("Please enter a valid IP Address")
+            request('https://www.shodan.io/host/' + ipAddress, (error, response, html) => {
                 if(!error && response.statusCode == 200) {
                     const $ = cheerio.load(html)
 
