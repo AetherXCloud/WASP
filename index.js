@@ -8,7 +8,7 @@ const nslookup = require('nslookup')
 const config = require("./config.js")
 
 let VirusTotalClient = new VirusTotal(config.VirusTotal.apiKey, config.VirusTotal.rescanParameters)
-let ScraperClient = new Scraper()
+let ScraperClient = new Scraper(config.General.openScrapedFiles, config.General.textEditor)
 let IPToolsClient = new IPTools()
 
 
@@ -29,7 +29,7 @@ function mainLoop(){
         type: 'list',
         name: 'action',
         message: 'What do you want to do?',
-        choices: ['Scan with Virus Total', 'Get Whois Info', 'nslookup', 'IP Tools', 'Scraper Menu']
+        choices: ['Scan with Virus Total', 'Get Whois Info', 'nslookup', 'IP Tools', 'Scraper Menu', 'Exit']
     }]).then(answers => {
         switch (answers.action) {
             case 'Scan with Virus Total':
