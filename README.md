@@ -15,6 +15,8 @@ Note - some of these tools will directly request data from the domains, URLs or 
 - Scrape Links from page
 - Download Page(as HTML file)
 
+![WASPScreenshot](https://i.imgur.com/rSKWUBQ.png)
+
 ## Installation and Configuration
 1. Install Node.JS (if not already installed)
 2. Clone the repository
