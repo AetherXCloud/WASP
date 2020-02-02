@@ -60,6 +60,8 @@ class VirusTotal {
                     }).catch(function(err){
                         reject({msg: "error running scan", error: err})
                     })
+                } else {
+                    resolve(data)
                 }
                 
             }).catch(function(err){
