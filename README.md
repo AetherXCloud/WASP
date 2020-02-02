@@ -22,6 +22,7 @@ Note - some of these tools will directly request data from the domains, URLs or 
 2. Clone the repository
 3. In the main directory run "npm i" to install the dependencies
 4. Open config.js in your favourite text editor and make any changes required to the settings
+5. To run the program open the directory and run the following command "npm run wasp"
 
 ## VirusTotal
 The VirusTotal option will not work without an API key. 
