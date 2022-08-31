@@ -15,7 +15,7 @@
     "geoip-lite": "^1.4.0",
     "inquirer": "^7.0.3",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "nslookup": "^1.1.1",
     "path": "^0.12.7",
     "prettify-html": "0.0.2",
